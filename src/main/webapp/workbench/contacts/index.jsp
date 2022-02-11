@@ -28,6 +28,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    });
 		
 	});
+	function showList(){
+		$("#contactBody").html("");
+		$.ajax({
+			url:"workbench/contacts/showList.do",
+			data:{
+
+			},
+			type:"get",
+			dataType:"json",
+			success:function (data){
+				var html="";
+				$.each(data,function (i,n){
+					html+='<tr>';
+					html+='	<td><input type="checkbox" /></td>';
+					html+='	<td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href=\'workbench/contacts/detail.jsp\';">'+n.fullname+'</a></td>';
+					html+='	<td>'+n.job+'</td>';
+					html+='	<td>'+n.createBy+'</td>';
+					html+='	<td>'+n.source+'</td>';
+					html+='	<td>'+n.birth+'</td>';
+					html+='</tr>';
+				})
+				$("#contactBody").html(html);
+			}
+		})
+
+	}
 	
 </script>
 </head>
@@ -404,10 +430,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<td>生日</td>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody id="contactBody">
 						<tr>
 							<td><input type="checkbox" /></td>
-							<td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href='workbench/contacts/detail.jsp';">李四</a></td>
+							<td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href='workbench/contacts/detail.jsp';">张宇阳</a></td>
 							<td>动力节点</td>
 							<td>zhangsan</td>
 							<td>广告</td>
