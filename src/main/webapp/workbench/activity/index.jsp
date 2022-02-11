@@ -301,9 +301,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 "owner":$.trim($("#search-owner").val()),
                 "startDate":$.trim($("#search-startDate").val()),
                 "endDate":$.trim($("#search-endDate").val()),
-
-
-
             },
             type:"get",
             dataType:"json",

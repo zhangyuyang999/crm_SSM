@@ -21,6 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript">
 
 	$(function(){
+		showList();
 		$(".time").datetimepicker({
 			minView: "month",
 			language:  'zh-CN',
@@ -78,6 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					 */
 					if (data){
 						$("#createClueModal").modal("hide");
+						showList();
 					}else{
 						alert("线索添加失败")
 					}
@@ -86,6 +88,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		})
 		
 	});
+	function showList(){
+		$("#clueBody").html("");
+		$.ajax({
+			url:"workbench/clue/showList.do",
+			data:{
+
+			},
+			type:"get",
+			dataType:"json",
+			success:function (data){
+				var html="";
+				$.each(data,function (i,n){
+					html+=	'<tr>';
+					html+=	'<td><input type="checkbox" /></td>';
+					html+=	'<td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href=\'workbench/clue/detail.do?id='+n.id+'\';">'+n.fullname+'</a></td>';
+					html+=	'<td>'+n.company+'</td>';
+					html+=	'<td>'+n.phone+'</td>';
+					html+=	'<td>'+n.mphone+'</td>';
+					html+=	'<td>'+n.source+'</td>';
+					html+=	'<td>'+n.createBy+'</td>';
+					html+=	'<td>'+n.state+'</td>';
+					html+=	'</r>';
+				})
+				$("#clueBody").html(html);
+			}
+		})
+
+	}
 
 	
 </script>
@@ -508,46 +538,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</tr>
 					</thead>
 					<tbody id="clueBody" >
-					<tr>
-						<td><input type="checkbox" /></td>
-						<td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href='workbench/clue/detail.do?id=af7203a3b31342539664c79fb9a4dd65';">刘猛先生</a></td>
-						<td>字节跳动</td>
-						<td>010-88888888</td>
-						<td>13888888888</td>
-						<td>合作伙伴</td>
-						<td>张三</td>
-						<td>将来联系</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox" /></td>
-						<td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href='workbench/clue/detail.do?id=798c16bbef0c48aa8799f717118ea844';">王健林先生</a></td>
-						<td>万达集团</td>
-						<td>010-66666666</td>
-						<td>13666666666</td>
-						<td>合作伙伴研讨会</td>
-						<td>张三</td>
-						<td>已联系</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox" /></td>
-						<td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href='workbench/clue/detail.do?id=affd151bc5004b4bb7b8b9453887dc1d';">雷军先生</a></td>
-						<td>小米集团</td>
-						<td>022-88888888</td>
-						<td>18888888888</td>
-						<td>内部研讨会 </td>
-						<td>张三</td>
-						<td>已联系</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox" /></td>
-						<td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href='workbench/clue/detail.do?id=d8034b1dc14c4823bc0f70c7bafc0e64';">董明珠女士</a></td>
-						<td>格力集团</td>
-						<td>021-33333333</td>
-						<td>13333333333</td>
-						<td>公开媒介 </td>
-						<td>张三</td>
-						<td>未联系</td>
-					</tr>
+<%--					<tr>--%>
+<%--						<td><input type="checkbox" /></td>--%>
+<%--						<td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href='workbench/clue/detail.do?id=af7203a3b31342539664c79fb9a4dd65';">张宇阳先生</a></td>--%>
+<%--						<td>字节跳动</td>--%>
+<%--						<td>010-88888888</td>--%>
+<%--						<td>13888888888</td>--%>
+<%--						<td>合作伙伴</td>--%>
+<%--						<td>张三</td>--%>
+<%--						<td>将来联系</td>--%>
+<%--					</tr>--%>
+<%--					<tr>--%>
+<%--						<td><input type="checkbox" /></td>--%>
+<%--						<td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href='workbench/clue/detail.do?id=798c16bbef0c48aa8799f717118ea844';">王健林先生</a></td>--%>
+<%--						<td>万达集团</td>--%>
+<%--						<td>010-66666666</td>--%>
+<%--						<td>13666666666</td>--%>
+<%--						<td>合作伙伴研讨会</td>--%>
+<%--						<td>张三</td>--%>
+<%--						<td>已联系</td>--%>
+<%--					</tr>--%>
+<%--					<tr>--%>
+<%--						<td><input type="checkbox" /></td>--%>
+<%--						<td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href='workbench/clue/detail.do?id=affd151bc5004b4bb7b8b9453887dc1d';">雷军先生</a></td>--%>
+<%--						<td>小米集团</td>--%>
+<%--						<td>022-88888888</td>--%>
+<%--						<td>18888888888</td>--%>
+<%--						<td>内部研讨会 </td>--%>
+<%--						<td>张三</td>--%>
+<%--						<td>已联系</td>--%>
+<%--					</tr>--%>
+<%--					<tr>--%>
+<%--						<td><input type="checkbox" /></td>--%>
+<%--						<td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href='workbench/clue/detail.do?id=d8034b1dc14c4823bc0f70c7bafc0e64';">董明珠女士</a></td>--%>
+<%--						<td>格力集团</td>--%>
+<%--						<td>021-33333333</td>--%>
+<%--						<td>13333333333</td>--%>
+<%--						<td>公开媒介 </td>--%>
+<%--						<td>张三</td>--%>
+<%--						<td>未联系</td>--%>
+<%--					</tr>--%>
 					</tbody>
 				</table>
 			</div>

@@ -75,14 +75,14 @@ public class TranController {
     private ModelAndView detail(String id,HttpServletRequest request)  {
         Tran t = ts.detail(id);
 //        处理可能性 阶段----可能性之间的对应关系  取pMap
-      String stage = t.getStage();
-       ServletContext application = request.getSession().getServletContext();
-        System.out.println(application);
-       Map<String ,String> pMap = (Map<String, String>) application.getAttribute("pMap");
-       //String possilibity=pMap.get(stage);;
-        System.out.println("000000000000");
-       //System.out.println(possilibity);
-       //t.setPossibility(possilibity);
+        String stage = t.getStage();
+        //ServletContext application = request.getSession().getServletContext();
+        System.out.println("00000000");
+        Map<String ,String> pMap = (Map<String, String>) request.getServletContext().getAttribute("pMap");
+        System.out.println("11111111");
+        String possibility="60";
+        System.out.println(possibility);
+        t.setPossibility(possibility);
         ModelAndView mv = new ModelAndView();
         mv.addObject("t",t);
         mv.setViewName("/transaction/detail");
